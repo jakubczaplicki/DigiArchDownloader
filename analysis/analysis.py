@@ -1,6 +1,10 @@
 #
-# Detect the record type (births, marriages, and deaths) 
+# Detect the record type (births, marriages, and deaths)
 # Run this script AFTER downloading the scans.
+#
+# The real reason behind this script is to learn
+# template detection. Once this script works reliably
+# another script will search for an area with surname.
 
 import sys, os
 import urllib2
@@ -28,6 +32,7 @@ def worker():
     if len(q) == 0:
       return;
 
+# find birth certificates
 def findTemplate(threadName, pageNo):
   print "Analysing %s" % (threadName)
   fname = '%d/00.jpg' % pageNo
@@ -46,7 +51,7 @@ def findTemplate(threadName, pageNo):
   bottom_right = (top_left[0] + w, top_left[1] + h)
   cv2.rectangle(img_rgb,top_left, bottom_right, 255, 2)
   cv2.imwrite('image%d-urodz.png' % pageNo, img_rgb)
-    
+
 def analyse():
   for i in range(10):
     t = threading.Thread(target=worker)
