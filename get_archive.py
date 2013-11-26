@@ -102,9 +102,9 @@ def download():
     t = threading.Thread(target=worker, args = [i])
     t.daemon = True
     t.start()
-  #lista = list(xrange(1,108))
-  #lista = lista[:88] + lista[91:]
-  lista = list(xrange(89,92))
+  lista = list(xrange(1,108)) # certificates
+  lista = lista[:88] + lista[91:]
+  # lista = list(xrange(89,92)) # list of names (exception)
   for pageNo in lista:
     threadName = "HTML-thread-%d" % pageNo
     item = Item("html", threadName, pageNo, '')
